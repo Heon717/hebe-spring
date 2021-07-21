@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hebe.mapper.TodoMapper">
+    <select id="selTodoList" resultType="TodoDTOList">
+        SELECT * FROM todo;
+    </select>
+
+    <insert id="insTodoList">
+        insert into todo (t_board,t_text,done,regdt) values (#{t_board},#{t_text},#{done},#{regdt});
+    </insert>
+
+    <delete id="delTodoList">
+        DELETE FROM todo where regdt = #{regdt};
+    </delete>
+</mapper>
