@@ -11,4 +11,5 @@ import java.util.ArrayList;
 @ToString
 public class TodoDTOList {
     private ArrayList<TodoDTO> list;
+
 }

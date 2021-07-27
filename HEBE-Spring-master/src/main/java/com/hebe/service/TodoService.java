@@ -15,8 +15,7 @@ public class TodoService {
     private TodoMapper TodoMapper;
 
     // 접속유저의 todolist 조회
-    public List<TodoDTO> selTodoList(TodoDTOList param) {
-        System.out.println("service : "+param);
+    public List<TodoDTO> selTodoList(TodoDTO param) {
         return TodoMapper.selTodoList(param);
     }
 

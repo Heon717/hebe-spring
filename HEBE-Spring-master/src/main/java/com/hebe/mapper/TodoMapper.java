@@ -10,7 +10,7 @@ import java.util.List;
 public interface TodoMapper {
 
     // 접속유저의 todolist 조회
-    List<TodoDTO> selTodoList(TodoDTOList param);
+    List<TodoDTO> selTodoList(TodoDTO param);
 
     // 접속유저의 todoList 작성
     void insTodoList(TodoDTO param);

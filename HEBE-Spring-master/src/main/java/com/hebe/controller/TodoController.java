@@ -18,17 +18,16 @@ public class TodoController {
     // 접속유저의 todolist 조회
     // RequestBody는 post형식으로 json 받을 때 사용
     @PostMapping("/todo")
-    public List<TodoDTO> selTodoList(TodoDTOList param) {
-        System.out.println("controller : "+param);
+    public List<TodoDTO> selTodoList(TodoDTO param) {
         List<TodoDTO> list = TodoService.selTodoList(param);
+        System.out.println("contlloer : "+list);
         return list;
     }
 
     // 접속유저의 todoList 작성
     @PostMapping("/todo/insert")
-    public String insTodoList(@RequestBody TodoDTOList param) {
+    public void insTodoList(@RequestBody TodoDTOList param) {
         TodoService.insTodoList(param);
-        return "insert 성공";
     }
 
     // 접속유저의 todoList 삭제
