@@ -2,11 +2,14 @@
 <!DOCTYPE mapper PUBLIC
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.hebe.mapper.TodoMapper">
     <select id="selTodoList" resultType="TodoDTO">
         SELECT * FROM todo;
     </select>
+
+<!--    <select id="selTodoList" resultType="TodoDTO">-->
+<!--        SELECT * FROM todo WHERE regdt = #{regdt};-->
+<!--    </select>-->
 
     <insert id="insTodoList">
         insert into todo (t_board,t_text,done,regdt) values (#{t_board},#{t_text},#{done},#{regdt});

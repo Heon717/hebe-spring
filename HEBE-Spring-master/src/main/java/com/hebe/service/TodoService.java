@@ -21,8 +21,7 @@ public class TodoService {
 
     // 접속유저의 todoList 작성
     public void insTodoList(TodoDTOList param) {
-        TodoMapper.delTodoList(param.getList().get(0
-        ));
+        TodoMapper.delTodoList(param.getList().get(0));
         for (TodoDTO item : param.getList()) {
             TodoMapper.insTodoList(item);
         }
