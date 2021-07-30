@@ -19,6 +19,10 @@ public class TodoService {
         return TodoMapper.selTodoList(param);
     }
 
+    public List<TodoDTO> dayTodoList(TodoDTO param) {
+        return TodoMapper.dayTodoList(param);
+    }
+
     // 접속유저의 todoList 작성
     public void insTodoList(TodoDTOList param) {
         TodoMapper.delTodoList(param.getList().get(0));

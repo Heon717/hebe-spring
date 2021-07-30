@@ -12,6 +12,8 @@ public interface TodoMapper {
     // 접속유저의 todolist 조회
     List<TodoDTO> selTodoList(TodoDTO param);
 
+    List<TodoDTO> dayTodoList(TodoDTO param);
+
     // 접속유저의 todoList 작성
     void insTodoList(TodoDTO param);
 

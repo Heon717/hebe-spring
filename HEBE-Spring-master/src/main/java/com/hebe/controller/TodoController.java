@@ -5,6 +5,7 @@ import com.hebe.vo.TodoDTO;
 import com.hebe.vo.TodoDTOList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.ArrayUtils;
 
 import java.util.List;
 
@@ -21,6 +22,22 @@ public class TodoController {
     public List<TodoDTO> selTodoList(TodoDTO param) {
         List<TodoDTO> list = TodoService.selTodoList(param);
         System.out.println("contlloer : "+list);
+        return list;
+    }
+
+    @GetMapping("/todo")
+    public List<TodoDTO> dayTodoList(TodoDTO param) {
+        List<TodoDTO> list = TodoService.dayTodoList(param);
+
+        System.out.println("param : "+param.getRegdt());
+        for(int i = 0; i < list.toArray().length; i++) {
+            if (param.getRegdt().equals(list.get(i).getRegdt())) {
+                System.out.println(param.getRegdt() + "  :  "+list.get(i));
+            } else {
+                list.remove(i);
+            }
+        }
+        System.out.println("list : "+ list);
         return list;
     }
 
