@@ -16,6 +16,6 @@
     </insert>
 
     <delete id="delTodoList">
-        DELETE FROM todo where regdt = #{regdt};
+        DELETE FROM todo
     </delete>
 </mapper>
