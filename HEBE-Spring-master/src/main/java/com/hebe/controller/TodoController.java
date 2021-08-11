@@ -1,12 +1,14 @@
 package com.hebe.controller;
 
 import com.hebe.service.TodoService;
+import com.hebe.vo.CalendarDTO;
 import com.hebe.vo.TodoDTO;
 import com.hebe.vo.TodoDTOList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.ArrayUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,20 +18,20 @@ public class TodoController {
     @Autowired
     private TodoService TodoService;
 
-    // 접속유저의 todolist 조회
+    // 접속유저의 전체 todolist 조회
     // RequestBody는 post형식으로 json 받을 때 사용
     @PostMapping("/todo")
     public List<TodoDTO> selTodoList(TodoDTO param) {
         List<TodoDTO> list = TodoService.selTodoList(param);
-        System.out.println("contlloer : "+list);
+//        System.out.println("TodoList select : "+list);
         return list;
     }
 
+    // 접속유저의  날짜별 todolist 조회
     @GetMapping("/todo")
     public List<TodoDTO> dayTodoList(TodoDTO param) {
         List<TodoDTO> list = TodoService.dayTodoList(param);
-
-        System.out.println("param : "+param.getRegdt());
+        System.out.println("day : "+param.getRegdt());
         for(int i = 0; i < list.toArray().length; i++) {
             if (param.getRegdt().equals(list.get(i).getRegdt())) {
                 System.out.println(param.getRegdt() + "  :  "+list.get(i));
@@ -37,8 +39,23 @@ public class TodoController {
                 list.remove(i);
             }
         }
-        System.out.println("list : "+ list);
+        System.out.println(param.getRegdt() + "[list] : "+ list);
         return list;
+    }
+
+
+//    public List<TodoDTO> calList(TodoDTO param) {
+//        List<TodoDTO> list = TodoService.calList(param);
+//        for (int i = 0 ; i< list.toArray().length; i++) {
+//            System.out.println(TodoService.calList(param).get(i).getRegdt());
+//        }
+//        return list;
+//    }
+
+    @PostMapping("/todo/regdt")
+    public List<CalendarDTO> monthdata(CalendarDTO param) {
+        System.out.println(param.getMonth());
+        return TodoService.monthdata(param);
     }
 
     // 접속유저의 todoList 작성
