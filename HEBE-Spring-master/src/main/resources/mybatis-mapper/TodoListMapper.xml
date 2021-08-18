@@ -4,27 +4,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hebe.mapper.TodoMapper">
     <select id="selTodoList" resultType="TodoDTO">
-        SELECT * FROM todo;
+        SELECT * FROM todo WHERE i_user = #{i_user};
     </select>
 
     <select id="dayTodoList" resultType="TodoDTO">
-        SELECT * FROM todo WHERE regdt = #{regdt} ;
+        SELECT * FROM todo WHERE regdt = #{regdt} and i_user = #{i_user};
     </select>
 
-    <select id="calList" resultType="TodoDTO">
-        SELECT DISTINCT regdt from todo WHERE MONTH(regdt)= #{month};
+    <select id="monthData" resultType="CalendarDTO">
+        SELECT DISTINCT DAY(regdt) as month from todo WHERE MONTH(regdt)=#{month} AND i_user = #{i_user};
     </select>
 
-    <select id="monthdata" resultType="CalendarDTO">
-        SELECT DISTINCT DAY(regdt) as month from todo WHERE MONTH(regdt)=#{month};
-    </select>
+<!--    <select id="calAllList" resultType="TodoDTO">-->
+<!--        SELECT DISTINCT regdt from todo-->
+<!--        WHERE regdt > DATE_SUB(NOW(), INTERVAL 4 MONTH)-->
+<!--          AND DATE_ADD(NOW(), INTERVAL 8 MONTH) > regdt-->
+<!--        ORDER BY regdt DESC;-->
+<!--    </select>-->
 
+    <update id="updTodoList">
+        update todo set t_text = #{t_text} where t_board =#{t_board} AND i_user = #{i_user};
+    </update>
 
     <insert id="insTodoList">
-        insert into todo (t_board,t_text,done,regdt) values (#{t_board},#{t_text},#{done},#{regdt});
+        insert into todo (i_user,t_board,t_text,done,regdt) values (#{i_user},#{t_board},#{t_text},#{done},#{regdt});
     </insert>
 
     <delete id="delTodoList">
-        DELETE FROM todo
+        DELETE FROM todo where i_user = #{i_user} and regdt = #{regdt};
     </delete>
 </mapper>

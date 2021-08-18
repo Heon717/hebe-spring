@@ -25,22 +25,32 @@ public class TodoService {
         return TodoMapper.dayTodoList(param);
     }
 
-    public List<TodoDTO> calList(TodoDTO param) { return TodoMapper.calList(param);}
+    public List<CalendarDTO> monthData(CalendarDTO param) { return TodoMapper.monthData(param); }
 
-    public List<CalendarDTO> monthdata(CalendarDTO param) { return TodoMapper.monthdata(param); }
+    public List<TodoDTO> calAllList(TodoDTO param) { return  TodoMapper.calAllList(param);}
+
 
     // 접속유저의 todoList 작성
     public void insTodoList(TodoDTOList param) {
-        if(param.getList().get(0) != null) {
-            TodoMapper.delTodoList(param.getList().get(0));
-        }
+//        if(param.getList().get(0) != null) {
+            for(int i=0; i<param.getList().size(); i++) {
+                TodoMapper.delTodoList(param.getList().get(i));
+            }
+//        }
         for (TodoDTO item : param.getList()) {
             TodoMapper.insTodoList(item);
         }
+//        TodoMapper.insTodoList(param.getList().get());
+    }
+
+    // 접속유저의 todoList 수정
+    public void updTodoList(TodoDTO param) {
+        TodoMapper.updTodoList(param);
     }
 
     // 접속유저의 todoList 삭제
     public void delTodoList(TodoDTOList param) {
+        System.out.println(param.getList().get(0));
         TodoMapper.delTodoList(param.getList().remove(0));
     }
 }

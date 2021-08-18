@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TodoDTO {
+    private int i_user;
     private int t_board;
     private String t_text;
     private boolean done;

@@ -23,50 +23,61 @@ public class TodoController {
     @PostMapping("/todo")
     public List<TodoDTO> selTodoList(TodoDTO param) {
         List<TodoDTO> list = TodoService.selTodoList(param);
-//        System.out.println("TodoList select : "+list);
+        System.out.println("TodoList select : "+list);
         return list;
     }
 
-    // 접속유저의  날짜별 todolist 조회
-    @GetMapping("/todo")
-    public List<TodoDTO> dayTodoList(TodoDTO param) {
-        List<TodoDTO> list = TodoService.dayTodoList(param);
-        System.out.println("day : "+param.getRegdt());
-        for(int i = 0; i < list.toArray().length; i++) {
-            if (param.getRegdt().equals(list.get(i).getRegdt())) {
-                System.out.println(param.getRegdt() + "  :  "+list.get(i));
-            } else {
-                list.remove(i);
-            }
-        }
-        System.out.println(param.getRegdt() + "[list] : "+ list);
-        return list;
-    }
-
-
-//    public List<TodoDTO> calList(TodoDTO param) {
-//        List<TodoDTO> list = TodoService.calList(param);
-//        for (int i = 0 ; i< list.toArray().length; i++) {
-//            System.out.println(TodoService.calList(param).get(i).getRegdt());
+//    // 접속유저의  날짜별 todolist 조회
+//    @GetMapping("/todo")
+//    public List<TodoDTO> dayTodoList(TodoDTO param) {
+//        List<TodoDTO> list = TodoService.dayTodoList(param);
+//        System.out.println("day : "+param.getRegdt());
+//        for(int i = 0; i < list.toArray().length; i++) {
+//            if (param.getRegdt().equals(list.get(i).getRegdt())) {
+//                System.out.println("iuser : "+param.getI_user());
+//                System.out.println(param.getRegdt() + "  :  "+list.get(i));
+//            } else {
+//                list.remove(i);
+//            }
 //        }
+//        System.out.println(param.getRegdt() + "[list] : "+ list);
 //        return list;
 //    }
-
-    @PostMapping("/todo/regdt")
-    public List<CalendarDTO> monthdata(CalendarDTO param) {
-        System.out.println(param.getMonth());
-        return TodoService.monthdata(param);
-    }
-
-    // 접속유저의 todoList 작성
-    @PostMapping("/todo/insert")
-    public void insTodoList(@RequestBody TodoDTOList param) {
-        TodoService.insTodoList(param);
-    }
-
-    // 접속유저의 todoList 삭제
-    @PostMapping("/todo/delete")
-    public void delTodoList(@RequestBody TodoDTOList param) {
-        TodoService.delTodoList(param);
-    }
+//
+//
+//    @PostMapping("/todo/regdt")
+//    public List<CalendarDTO> monthData(CalendarDTO param) {
+//        System.out.println(param.getMonth());
+//        return TodoService.monthData(param);
+//    }
+//
+//    @PostMapping("/todo/cal")
+//    public String[] calAllList(TodoDTO param){
+//        List<TodoDTO> list = TodoService.calAllList(param);
+//        String[] strArr = new String[20];
+//        for(int i=0; i < TodoService.calAllList(param).toArray().length; i++){
+//            strArr[i] = list.get(i).getRegdt();
+//           System.out.println(list.get(i).getRegdt());
+//        };
+//        return strArr;
+//    }
+//
+//    // 접속유저의 todoList 작성
+//    @PostMapping("/todo/insert")
+//    public void insTodoList(@RequestBody TodoDTOList param) {
+//        System.out.println(param);
+//        TodoService.insTodoList(param);
+//    }
+//
+//    // 접속유저의 todoList 수정
+//    @PostMapping("/todo/update")
+//    public void update(@RequestBody TodoDTO param) {
+//        TodoService.updTodoList(param);
+//    }
+//
+//    // 접속유저의 todoList 삭제
+//    @PostMapping("/todo/delete")
+//    public void delTodoList(@RequestBody TodoDTOList param) {
+//        TodoService.delTodoList(param);
+//    }
 }
